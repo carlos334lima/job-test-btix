@@ -99,7 +99,7 @@ const PostsList = () => {
             onClose={() => setSnackError(false)}
           >
             <Alert severity="error" sx={{ width: "100%" }}>
-              Houve Erro interno!
+              Houve um Erro interno!
             </Alert>
           </Snackbar>
         </Grid>

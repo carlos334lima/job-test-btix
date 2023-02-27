@@ -4,7 +4,7 @@ import { api } from "../../services/api";
 import { IPost } from "../../pages/PostsList";
 
 import Divider from "@mui/material/Divider";
-import { AccordionDetails, Avatar, List } from "@mui/material";
+import { AccordionDetails, Alert, Avatar, List, Snackbar } from "@mui/material";
 import ListItem from "@mui/material/ListItem";
 import Accordion from "@mui/material/Accordion";
 import Typography from "@mui/material/Typography";
@@ -31,6 +31,7 @@ type IRenderComments = {
 
 export function RenderList({ item }: IRenderList) {
   const [comments, setComments] = useState<IComments[]>([]);
+  const [snackError, setSnackError] = useState(false);
 
   useEffect(() => {
     callApi();
@@ -105,6 +106,15 @@ export function RenderList({ item }: IRenderList) {
           </AccordionDetails>
         </Accordion>
       </ListItem>
+      <Snackbar
+        open={snackError}
+        autoHideDuration={500}
+        onClose={() => setSnackError(false)}
+      >
+        <Alert severity="error" sx={{ width: "100%" }}>
+          Houve um Erro interno!
+        </Alert>
+      </Snackbar>
       <Divider variant="inset" component="li" />
     </List>
   );
